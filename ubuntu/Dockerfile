@@ -7,8 +7,10 @@ RUN BUILD_DEPS="build-essential libfuse-dev libcurl4-openssl-dev libxml2-dev mim
     apt-get update -qq && \
     apt-get install -y $BUILD_DEPS --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* && \
-    wget -qO- https://github.com/s3fs-fuse/s3fs-fuse/archive/v1.78.tar.gz | tar cz -C /tmp && \
-    cd /tmp/s3fs-fuse-1.78 && \
+    wget -qO /tmp/v1.74.tar.gz https://s3fs.googlecode.com/files/s3fs-1.74.tar.gz && \
+    tar -C /tmp -xzf /tmp/v1.74.tar.gz && \
+    rm -f /tmp/v1.74.tar.gz && \
+    cd /tmp/s3fs-fuse-1.74 && \
     ./autogen.sh && \
     ./configure --prefix=/usr && \
     make && \
